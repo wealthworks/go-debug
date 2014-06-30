@@ -106,6 +106,13 @@ func SetWriter(w io.Writer) {
 	writer = w
 }
 
+// Disable all pattern matching. This function is thread-safe.
+func Disable() {
+	m.Lock()
+	defer m.Unlock()
+	enabled = false
+}
+
 // Enable the given debug `pattern`. Patterns take a glob-like form,
 // for example if you wanted to enable everything, just use "*", or
 // if you had a library named mongodb you could use "mongodb:connection",
@@ -122,13 +129,6 @@ func Enable(pattern string) {
 	pattern = "^(" + pattern + ")$"
 	reg = regexp.MustCompile(pattern)
 	enabled = true
-}
-
-// Disable all pattern matching. This function is thread-safe.
-func Disable() {
-	m.Lock()
-	defer m.Unlock()
-	enabled = false
 }
 
 // Debug creates a debug function for `name` which you call
