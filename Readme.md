@@ -3,6 +3,8 @@
 
  Conditional debug logging for Go libraries.
 
+ The basic premise is that every library should have some form of debug logging, ideally enabled without touching code. Go-debug supports enabling and filtering these logs in real-time without reloading the program which is very useful for inspecting runtime behaviour of a production application.
+
  View the [docs](http://godoc.org/github.com/visionmedia/go-debug).
 
 ## Installation
@@ -32,7 +34,7 @@ func main() {
 }
 ```
 
-outputs:
+If you ran the program with the `DEBUG=*` environment variable you would see:
 
 ```
 15:58:15.115 34us   33us   single - sending mail
@@ -111,13 +113,9 @@ multiple:b
 q
 ```
 
-## What?
+## The DEBUG environment variable
 
- The basic premise is that every library should have some form of debug logging,
- ideally enabled without touching code. When disabled a no-op function is returned,
- which Go can easily execute 100m ops/s on a MBP retina, in other words it's negligable for most code paths.
-
- Executables often support `--verbose` flags for conditional logging, but
+ Executables often support `--verbose` flags for conditional logging, however
  libraries typically either require altering your code to enable logging,
  or simply omit logging all together. go-debug allows conditional logging
  to be enabled via the __DEBUG__ environment variable, where one or more
@@ -126,7 +124,7 @@ q
  For example suppose your application has several models and you want
  to output logs for users only, you might use `DEBUG=models:user`. In contrast
  if you wanted to see what all database activity was you might use `DEBUG=models:*`,
- or if you're love being swamped with logs: `DEBUG=*`.
+ or if you're love being swamped with logs: `DEBUG=*`. You may also specify a list of names delimited by a comma, for example `DEBUG=mongo,redis:*`.
 
  The name given _should_ be the package name, however you can use whatever you like.
 
