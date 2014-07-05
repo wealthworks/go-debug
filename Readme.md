@@ -113,6 +113,13 @@ multiple:b
 q
 ```
 
+ If your `telnet` doesn't support unix domain sockets you can try socat or netcat:
+
+```
+$ socat - UNIX-CONNECT:/tmp/debug-$pid.sock
+$ nc -U /tmp/debug-$pid.sock
+```
+
 ## The DEBUG environment variable
 
  Executables often support `--verbose` flags for conditional logging, however
