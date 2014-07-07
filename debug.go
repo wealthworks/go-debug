@@ -56,6 +56,8 @@ func serve() {
 		return
 	}
 
+	defer lsock.Close()
+
 	for {
 		sock, err := lsock.Accept()
 		if err != nil {
