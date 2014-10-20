@@ -5,12 +5,12 @@
 
  The basic premise is that every library should have some form of debug logging, ideally enabled without touching code. Go-debug supports enabling and filtering these logs in real-time without reloading the program which is very useful for inspecting runtime behaviour of a production application.
 
- View the [docs](http://godoc.org/github.com/visionmedia/go-debug).
+ View the [docs](http://godoc.org/github.com/tj/go-debug).
 
 ## Installation
 
 ```
-$ go get github.com/visionmedia/go-debug
+$ go get github.com/tj/go-debug
 ```
 
 ## Example
@@ -18,7 +18,7 @@ $ go get github.com/visionmedia/go-debug
 ```go
 package main
 
-import . "github.com/visionmedia/go-debug"
+import . "github.com/tj/go-debug"
 import "time"
 
 var debug = Debug("single")
