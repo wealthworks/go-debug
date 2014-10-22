@@ -2,14 +2,10 @@ package main
 
 import . "github.com/visionmedia/go-debug"
 import "time"
-import "fmt"
-import "os"
 
 var debug = Debug("single")
 
 func main() {
-	fmt.Printf("pid: %d\n", os.Getpid())
-
 	for {
 		debug("sending mail")
 		debug("send email to %s", "tobi@segment.io")

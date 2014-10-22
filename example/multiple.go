@@ -2,8 +2,6 @@ package main
 
 import . "github.com/visionmedia/go-debug"
 import "time"
-import "fmt"
-import "os"
 
 var a = Debug("multiple:a")
 var b = Debug("multiple:b")
@@ -17,7 +15,6 @@ func work(debug DebugFunction, delay time.Duration) {
 }
 
 func main() {
-	fmt.Printf("pid: %d\n", os.Getpid())
 	q := make(chan bool)
 
 	go work(a, 1000*time.Millisecond)
